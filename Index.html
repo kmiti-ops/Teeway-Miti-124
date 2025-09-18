@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sounds of the Serengeti</title>
+  <link rel="stylesheet" href="serengeti.css">
+  <meta name="author" content="Khetiwe Miti">
+  <meta name="date" content="09-17-2025">
+  <!--Khetiwe Miti 09-17/2025-->
+  <!--Adapted from https://javascript30.com
+      Javascript Drum Kit-->
+  <!--
+      New Elements: audio, kbd
+      New attributes: data-   
+  -->
+</head>
+<body>
+
+<!-- Added unique ids to all letters for click event -->
+  <div class="keys">
+    <div data-key="10" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Lion</span>
+    </div>
+    <div data-key="20" class="key">
+      <kbd>E</kbd>
+      <span class="sound">Elephant</span>
+    </div>
+    <div data-key="30" class="key">
+      <kbd>R</kbd>
+      <span class="sound">Hyena</span>
+    </div>
+    <div data-key="40" class="key">
+      <kbd>E</kbd>
+      <span class="sound">Zebra</span>
+    </div>
+    <div data-key="50" class="key">
+      <kbd>N</kbd>
+      <span class="sound">Buffalo</span>
+    </div>
+    <div data-key="60" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Hippo</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>E</kbd>
+      <span class="sound">Giraffe</span>
+    </div>
+    <div data-key="80" class="key">
+      <kbd>T</kbd>
+      <span class="sound">Monkey</span>
+    </div>
+    <div data-key="90" class="key">
+      <kbd>I</kbd>
+      <span class="sound">Crocodile</span>
+    </div>
+  </div>
+
+  <audio data-key="10" src="sound/lion3-327502.mp3"></audio>
+  <audio data-key="20" src="sound/elephant-trumpets-growls-6047.mp3"></audio>
+  <audio data-key="30" src="sound/laugh-of-a-herd-of-hyenas-sound.mp3"></audio>
+  <audio data-key="40" src="sound/the-sound-of-a-wild-zebra-at-night.mp3"></audio>
+  <audio data-key="50" src="sound/animals-buffalo-sound-232390.mp3"></audio>
+  <audio data-key="60" src="sound/hippos-33576.mp3"></audio>
+  <audio data-key="70" src="sound/giraffe-screams-in-the-wild.mp3"></audio>
+  <audio data-key="80" src="sound/monkey-128368.mp3"></audio>
+  <audio data-key="90" src="sound/crocodile-hissing-372480.mp3"></audio>
+
+<script src="serengeti.js"></script>
+
+
+</body>
+</html>
