@@ -1,0 +1,47 @@
+<!--
+Author: Khetiwe Miti (JCCC)
+Date: 2025-10-01
+Project: Whack-an-Owl (Improved JavaScript30 Whack-a-Mole)
+Sources: Starter adapted from https://javascript30.com
+Assets: Trees.png (background), hole.png (tree hollow), Owl.png (owl), hammer.png/hammer-hit.png (cursor)
+What was new/challenging: Asset swap, timer/high score, larger holes, custom cursor, accessibility, responsive layout
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whack-an-Owl!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- NEW: same Google font as original -->
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🦉" />
+</head>
+<body>
+  <header class="header">
+    <!-- CHANGED: title text to “Owl” and aria-live on score -->
+    <h1>Whack-an-Owl <span class="score" aria-live="polite">0</span></h1>
+
+    <!-- NEW: controls bar with Start button, timer, and high score -->
+    <div class="controls">
+      <button id="startBtn" type="button" aria-label="Start game">Start</button>
+      <span class="time">Time: <strong id="timeLeft">15</strong>s</span>
+      <span class="high">High score: <strong id="highScore">0</strong></span>
+    </div>
+  </header>
+
+  <!-- CHANGED: kept 6 holes but inner element renamed to .owl -->
+  <main class="game" aria-label="Whack-an-Owl game board">
+    <div class="hole hole1"><div class="owl" role="button" aria-label="Owl"></div></div>
+    <div class="hole hole2"><div class="owl" role="button" aria-label="Owl"></div></div>
+    <div class="hole hole3"><div class="owl" role="button" aria-label="Owl"></div></div>
+    <div class="hole hole4"><div class="owl" role="button" aria-label="Owl"></div></div>
+    <div class="hole hole5"><div class="owl" role="button" aria-label="Owl"></div></div>
+    <div class="hole hole6"><div class="owl" role="button" aria-label="Owl"></div></div>
+  </main>
+
+  <!-- NEW: defer script to avoid blocking -->
+  <script src="script.js" defer></script>
+</body>
+</html>

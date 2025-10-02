@@ -1,0 +1,144 @@
+/*
+Author: Khetiwe Miti
+Date: 2025-10-01
+Project: Whack-an-Owl
+Sources: JavaScript30 starter (Whack-a-Mole)
+
+Summary of Improvements (CSS):
+- CHANGED background → Trees.png forest.
+- NEW header/controls styling (Start, timer, high score).
+- CHANGED larger play area + bigger holes/stumps (hole.png).
+- CHANGED mole → Owl.png, sized appropriately.
+- NEW hammer cursor (cleaned up to one source of truth).
+- NEW responsive font sizing with clamp().
+- NEW accessibility touches (focus outline).
+*/
+
+/* ---------- Global reset & background ---------- */
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  background: url('Trees.png') no-repeat center center fixed; /* CHANGED */
+  background-size: cover;
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Amatic SC', cursive;
+  color: #fff; /* CHANGED: better contrast */
+  text-shadow: 2px 2px 4px rgba(0,0,0,.6);
+}
+
+/* ---------- Cursor setup (cleaned up) ---------- */
+:root {
+  /* Hotspot = click point of cursor image.
+     If hammer.png is 32x32, keep 0 0. Adjust if needed. */
+  --cursor-x: 0;
+  --cursor-y: 0;
+}
+
+html, body, .game, .owl {
+  cursor:
+    url('hammer.png') var(--cursor-x) var(--cursor-y), /* primary PNG */
+    pointer;                                          /* final fallback */
+}
+
+body.hit, .game.hit {
+  cursor:
+    url('hammer.png') var(--cursor-x) var(--cursor-y),
+    pointer;
+}
+
+/* ---------- Header & controls ---------- */
+.header {
+  text-align: center;
+  padding: 1rem 1rem 0;
+}
+
+h1 {
+  font-size: clamp(4rem, 8vw, 9rem); /* CHANGED: responsive */
+  line-height: 1;
+  margin: .5rem 0 0;
+}
+
+.score {
+  background: rgba(0,0,0,0.45); /* CHANGED: pill background */
+  padding: 0 .8rem;
+  margin-left: .8rem;
+  border-radius: .8rem;
+}
+
+.controls {
+  display: inline-flex; /* NEW */
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto 0;
+  padding: .6rem 1rem;
+  background: rgba(0,0,0,0.35);
+  border-radius: 1rem;
+}
+
+button#startBtn {
+  font-family: inherit;
+  font-size: 2.4rem;
+  padding: .6rem 1.4rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.9);
+  color: #2b3a1d;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+button#startBtn:active { transform: translateY(1px); }
+
+.time, .high { font-size: 2.4rem; }
+
+/* ---------- Game board & holes ---------- */
+.game {
+  width: min(95vw, 800px); /* CHANGED: responsive width */
+  height: min(70vh, 550px);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+}
+
+.hole {
+  flex: 1 0 33.33%;
+  height: 250px;            /* CHANGED: larger holes */
+  position: relative;
+  overflow: hidden;
+}
+
+.hole::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -45px;
+  height: 200px;            /* CHANGED: larger stump */
+  background: url('hole.png') bottom center no-repeat; /* CHANGED: stump */
+  background-size: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.owl {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  width: 100%;
+  height: 80%; /* CHANGED: owl sized to hole */
+  background: url('Owl.png') bottom center no-repeat; /* CHANGED */
+  background-size: 80%;
+  transition: top .45s ease; /* CHANGED: slower/smoother */
+  touch-action: manipulation; /* NEW: mobile taps */
+}
+
+.hole.up .owl { top: 0; }
+
+/* ---------- Accessibility ---------- */
+.owl:focus {
+  outline: 3px dashed #fff; /* NEW */
+  outline-offset: 4px;
+}
