@@ -1,24 +1,15 @@
-/*
-Author: Khetiwe Miti
-Date: 2025-10-01
-Project: Whack-an-Owl
-Sources: JavaScript30 starter (Whack-a-Mole)
-
-Summary of Improvements (CSS):
-- CHANGED background → Trees.png forest.
-- NEW header/controls styling (Start, timer, high score).
-- CHANGED larger play area + bigger holes/stumps (hole.png).
-- CHANGED mole → Owl.png, sized appropriately.
-- NEW hammer cursor (cleaned up to one source of truth).
-- NEW responsive font sizing with clamp().
-- NEW accessibility touches (focus outline).
+/* Khetiwe Miti 10-01-2025 */
+/* Adapted from https://javascript30.com */
+/* Javascript Whack A Mole */
+/* new properties: display, flex-direction, align -items, justify-content, transition, transform */
+/*Summary of Improvements (CSS): backgroun, header/controls styling (Start, timer, high score), 
+larger play area + bigger holes/stumps (hole.png), responsive font sizing with clamp(), accessibility touches (focus outline).
 */
 
-/* ---------- Global reset & background ---------- */
 html {
   box-sizing: border-box;
   font-size: 10px;
-  background: url('Trees.png') no-repeat center center fixed; /* CHANGED */
+  background: url('Trees.png') no-repeat center center fixed; 
   background-size: cover;
 }
 *, *::before, *::after { box-sizing: inherit; }
@@ -27,22 +18,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Amatic SC', cursive;
-  color: #fff; /* CHANGED: better contrast */
+  color: #fff;
   text-shadow: 2px 2px 4px rgba(0,0,0,.6);
 }
 
-/* ---------- Cursor setup (cleaned up) ---------- */
 :root {
-  /* Hotspot = click point of cursor image.
-     If hammer.png is 32x32, keep 0 0. Adjust if needed. */
   --cursor-x: 0;
   --cursor-y: 0;
 }
 
 html, body, .game, .owl {
   cursor:
-    url('hammer.png') var(--cursor-x) var(--cursor-y), /* primary PNG */
-    pointer;                                          /* final fallback */
+    url('hammer.png') var(--cursor-x) var(--cursor-y), 
+    pointer;                                          
 }
 
 body.hit, .game.hit {
@@ -51,27 +39,27 @@ body.hit, .game.hit {
     pointer;
 }
 
-/* ---------- Header & controls ---------- */
+
 .header {
   text-align: center;
   padding: 1rem 1rem 0;
 }
 
 h1 {
-  font-size: clamp(4rem, 8vw, 9rem); /* CHANGED: responsive */
+  font-size: clamp(4rem, 8vw, 9rem); 
   line-height: 1;
   margin: .5rem 0 0;
 }
 
 .score {
-  background: rgba(0,0,0,0.45); /* CHANGED: pill background */
+  background: rgba(0,0,0,0.45); 
   padding: 0 .8rem;
   margin-left: .8rem;
   border-radius: .8rem;
 }
 
 .controls {
-  display: inline-flex; /* NEW */
+  display: inline-flex; 
   gap: 1.2rem;
   align-items: center;
   justify-content: center;
@@ -96,9 +84,9 @@ button#startBtn:active { transform: translateY(1px); }
 
 .time, .high { font-size: 2.4rem; }
 
-/* ---------- Game board & holes ---------- */
+
 .game {
-  width: min(95vw, 800px); /* CHANGED: responsive width */
+  width: min(95vw, 800px);
   height: min(70vh, 550px);
   display: flex;
   flex-wrap: wrap;
@@ -107,7 +95,7 @@ button#startBtn:active { transform: translateY(1px); }
 
 .hole {
   flex: 1 0 33.33%;
-  height: 250px;            /* CHANGED: larger holes */
+  height: 250px;           
   position: relative;
   overflow: hidden;
 }
@@ -116,8 +104,8 @@ button#startBtn:active { transform: translateY(1px); }
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: -45px;
-  height: 200px;            /* CHANGED: larger stump */
-  background: url('hole.png') bottom center no-repeat; /* CHANGED: stump */
+  height: 200px;           
+  background: url('hole.png') bottom center no-repeat; 
   background-size: contain;
   z-index: 2;
   pointer-events: none;
@@ -128,17 +116,17 @@ button#startBtn:active { transform: translateY(1px); }
   top: 100%;
   left: 0; right: 0;
   width: 100%;
-  height: 80%; /* CHANGED: owl sized to hole */
-  background: url('Owl.png') bottom center no-repeat; /* CHANGED */
+  height: 80%; 
+  background: url('Owl.png') bottom center no-repeat; 
   background-size: 80%;
-  transition: top .45s ease; /* CHANGED: slower/smoother */
-  touch-action: manipulation; /* NEW: mobile taps */
+  transition: top .45s ease; 
+  touch-action: manipulation;
 }
 
 .hole.up .owl { top: 0; }
 
-/* ---------- Accessibility ---------- */
 .owl:focus {
-  outline: 3px dashed #fff; /* NEW */
+  outline: 3px dashed #fff;
   outline-offset: 4px;
 }
+
