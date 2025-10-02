@@ -1,49 +1,44 @@
-/*
-Author: Khetiwe Miti
-Date: 2025-10-01
-Project: Whack-an-Owl
-Sources: JavaScript30 starter (Whack-a-Mole)
-
-Summary of Improvements (JS):
-- CHANGED “mole” → “owl” selectors.
-- NEW Start button, countdown timer, and localStorage high score.
-- CHANGED pop-up timing to be slower (easier): 800–1500ms.
-- CHANGED larger hole sizing supported (CSS).
-- NEW small UX touch: prevent clicks after time is up; disable Start during play.
-- A11y: aria-live score (handled in HTML) and clean state resets.
+// Khetiwe Miti – 10-01-2025
+/* Adapted from https://javascript30.com */
+/* Whack a MoLE */
+/* New Information: 
+NEW Start button, countdown timer, and localStorage high score.
+CHANGED pop-up timing to be slower (easier): 800–1500ms.
+CHANGED larger hole sizing supported
+Prevent clicks after time is up; disable Start during play.
 */
 
-// ----- DOM refs -----
-const holes = document.querySelectorAll('.hole');        // original selector kept
-const scoreBoard = document.querySelector('.score');     // original
-const owls = document.querySelectorAll('.owl');          // CHANGED: .mole → .owl
+/*Changed Mole to Owl*/
+const holes = document.querySelectorAll('.hole');        
+const scoreBoard = document.querySelector('.score');     
+const owls = document.querySelectorAll('.owl');          
 
-// NEW: controls for timer/high score
+/* Added new controls for timer/high score */
 const startBtn = document.getElementById('startBtn');
 const timeLeftEl = document.getElementById('timeLeft');
 const highScoreEl = document.getElementById('highScore');
 
-// ----- Game state -----
+/*Added a new timer count down*/
 let lastHole;
 let timeUp = false;
 let score = 0;
-let countdownId = null;  // NEW timer handle
+let countdownId = null; 
 
-// ----- Tunables -----
-const GAME_LENGTH = 15;     // seconds per round (NEW)
-const POP_MIN_MS  = 800;    // CHANGED: slower min time (was ~350)
-const POP_MAX_MS  = 1500;   // CHANGED: slower max time (was ~1000)
+/* changed the time that the game runs in seconds*/
+const GAME_LENGTH = 15;     
+const POP_MIN_MS  = 800;    
+const POP_MAX_MS  = 1500;  
 
-// Load & render saved high score (NEW)
+/* Added saved high score. changes with ech high score achieved*/ 
 const savedHigh = Number(localStorage.getItem('owlHighScore') || 0);
 if (highScoreEl) highScoreEl.textContent = savedHigh;
 
-// Utility: random integer in range [min, max]
+
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-// Pick a random hole that is not the same as last time
+/* Allows a random hole that is not the same as last time for the owl to pop up */
 function randomHole(list) {
   const idx = Math.floor(Math.random() * list.length);
   const hole = list[idx];
@@ -52,9 +47,9 @@ function randomHole(list) {
   return hole;
 }
 
-// Core loop: raise an owl for a random duration, then repeat
+/* raise an owl for a random duration, then repeat */
 function peep() {
-  const time = randomTime(POP_MIN_MS, POP_MAX_MS); // CHANGED: slower range
+  const time = randomTime(POP_MIN_MS, POP_MAX_MS);
   const hole = randomHole(holes);
   hole.classList.add('up');
   setTimeout(() => {
@@ -63,7 +58,7 @@ function peep() {
   }, time);
 }
 
-// Start a round: reset state, disable Start, kick off loops
+/* Start a new round */
 function startGame() {
   score = 0;
   scoreBoard.textContent = score;
@@ -74,7 +69,7 @@ function startGame() {
   runCountdown(GAME_LENGTH);
 }
 
-// Countdown display and end-of-round handling
+
 function runCountdown(secs) {
   clearInterval(countdownId);
   let remaining = secs;
@@ -90,7 +85,6 @@ function runCountdown(secs) {
   }, 1000);
 }
 
-// Save high score to localStorage if beaten (NEW)
 function updateHighScore() {
   const currentHigh = Number(localStorage.getItem('owlHighScore') || 0);
   if (score > currentHigh) {
@@ -99,7 +93,6 @@ function updateHighScore() {
   }
 }
 
-// Player bonks an owl
 function bonk(e) {
   if (!e.isTrusted) return; // ignore scripted clicks (original anti-cheat)
   if (timeUp) return;       // NEW: ignore clicks after time expires
@@ -107,11 +100,8 @@ function bonk(e) {
   this.parentNode.classList.remove('up');
   scoreBoard.textContent = score;
 
-  // If you later add a “hit” cursor image, you can flash it here:
-  // document.body.classList.add('hit');
-  // setTimeout(() => document.body.classList.remove('hit'), 120);
 }
 
-// ----- Events -----
 owls.forEach(owl => owl.addEventListener('click', bonk)); // CHANGED: .owl
 if (startBtn) startBtn.addEventListener('click', startGame);
+
