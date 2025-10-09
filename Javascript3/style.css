@@ -104,7 +104,11 @@ body {
   outline: 0;
 }
 textarea { height: 20rem; resize: vertical; }
-
+textarea#text {
+  width: 100%;
+  height: clamp(240px, 40vh, 560px);
+  box-sizing: border-box;
+}
 .voiceinator input[type="range"] { accent-color: var(--brand); padding: 0; border: 0; background: transparent; }
 
 
@@ -130,3 +134,4 @@ p  { margin: 0;
      font-size: clamp(1.8rem, 2.4vw, 1.8rem); 
     color: #0c035a;
     }
+
