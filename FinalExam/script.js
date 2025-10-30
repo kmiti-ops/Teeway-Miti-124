@@ -68,6 +68,8 @@ function runAllCalculations() {
 document.getElementById("calcBtn").addEventListener("click", runAllCalculations);
 
 
-
+const count = window.matchMedia('(max-width: 600px)').matches ? 3 : 6;
+for (let i = 0; i < count; i++) { /* spawn */ }
   
+
 
