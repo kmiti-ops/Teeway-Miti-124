@@ -14,53 +14,51 @@ Assignment notes
 
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JavaScript Calculator</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<main class="container wrap" aria-labelledby="pageTitle">
-<section class="card subtle">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container wrap" aria-labelledby="pageTitle">
+      <section class="card subtle">
+        <header class="site-header">
+          <h1 id="pageTitle">JavaScript Calculator</h1>
+        </header>
 
-    <header class="site-header">
-<h1 id="pageTitle">JavaScript Calculator</h1>
-</header>
+        <div class="controls">
+          <label for="num">Enter your desired number!</label>
+          <input type="number" id="num" />
+          <button id="calcBtn" type="button">Calculate!</button>
+        </div>
 
+        <div class="results">
+          <div class="result-box">
+            <p id="addition">addition</p>
+          </div>
+          <div class="result-box">
+            <p id="subtraction">subtraction</p>
+          </div>
 
-<div class="controls">
-  <label for="num">Enter your desired number!</label>
-  <input type="number" id="num"/>
-  <button id="calcBtn" type="button">Calculate!</button>
-</div>
+          <div class="result-box">
+            <p id="multiplication">multiplication</p>
+          </div>
 
-<div class="results">
-    
-  <div class="result-box">
-    <p id="addition">addition</p>
-  </div>
-  <div class="result-box">
-    <p id="subtraction">subtraction</p>
-  </div>
+          <div class="result-box">
+            <p id="division">division</p>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <div class="result-box">
-    <p id="multiplication">multiplication</p>
-  </div>
+    <footer class="site-footer">
+      <p>Khetiwe Miti — WEB124 Final Exam ©2025</p>
+    </footer>
+    <script src="script.js" defer></script>
+  </body>
+</html>
 
-  <div class="result-box">
-    <p id="division">division</p>
-  </div>
-</div>
-</section>
-
-
-</main>
-
-<footer class="site-footer">
-  <p>Khetiwe Miti — WEB124 Final Exam ©2025</p>
-</footer>
-<script src="script.js" defer></script>
-</body>
 
 </html>
+
