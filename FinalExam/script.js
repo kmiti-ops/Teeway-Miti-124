@@ -8,63 +8,60 @@ What I implemented (Behavior/Logic):
   2) buildSubtraction(): while loop → num - 1..10
   3) buildMultiplication(): do...while loop → num × 1..10
   4) buildDivision(): for loop → num ÷ 1..10 with .toFixed(2)
-
-- Wrapper function runAllCalculations() calls all four and updates the correct <p> by id.
-- Dynamic event listener: document.getElementById('calcBtn').addEventListener('click', runAllCalculations);
-  (No inline onclick in HTML, keeping concerns separate.)
   */
 
-'use strict'
+'use strict';
 
-function buildAddition() {
-  const num = Number(document.getElementById("num").value);
-  let output = "";
-  for (let i = 1; i <= 10; i++) {
-    output += `${i} + ${num} = ${i + num}\n`;
-  }
-  document.getElementById("addition").textContent = output;
-document.getElementById("calcBtn").addEventListener("click", buildAddition);
+function getNum() {
+  const n = Number(document.getElementById('num').value);
+  return Number.isFinite(n) ? n : 0;
 }
 
+/* Addition — for loop with += */
+function buildAddition() {
+  const num = getNum();
+  let output = '';
+  for (let i = 1; i <= 10; i++) {
+    output += `${num} + ${i} = ${num + i}\n`;
+  }
+  document.getElementById('addition').textContent = output;
+}
 
+/* Subtraction — while loop with += */
 function buildSubtraction() {
-  const num = Number(document.getElementById("num").value);
-  let output = "";
+  const num = getNum();
+  let output = '';
   let i = 1;
   while (i <= 10) {
-    output += `${i} - ${num} = ${i - num}\n`;
-    i++; 
+    output += `${num} - ${i} = ${num - i}\n`;
+    i++;
   }
-  document.getElementById("subtraction").textContent = output;
-document.getElementById("calcBtn").addEventListener("click", buildSubtraction);
+  document.getElementById('subtraction').textContent = output;
 }
 
-
+/* Multiplication — do...while loop with += */
 function buildMultiplication() {
-  const num = Number(document.getElementById("num").value);
-  let output = "";
+  const num = getNum();
+  let output = '';
   let i = 1;
   do {
-    output += `${i} × ${num} = ${i * num}\n`;
+    output += `${num} × ${i} = ${num * i}\n`;
     i++;
   } while (i <= 10);
-  document.getElementById("multiplication").textContent = output;
-  document.getElementById("calcBtn").addEventListener("click", buildMultiplication);
+  document.getElementById('multiplication').textContent = output;
 }
 
-
+/* Division — for loop with += and toFixed(2) */
 function buildDivision() {
-  const num = Number(document.getElementById("num").value);
-  let output = "";
+  const num = getNum();
+  let output = '';
   for (let i = 1; i <= 10; i++) {
-    const result = (i / num).toFixed(2);
-    output += `${i} ÷ ${num} = ${result}\n`;
+    output += `${num} ÷ ${i} = ${(num / i).toFixed(2)}\n`;
   }
-  document.getElementById("division").textContent = output;
-document.getElementById("calcBtn").addEventListener("click", buildDivision);
-
+  document.getElementById('division').textContent = output;
 }
 
+/* Wrapper function runs all four */
 function runAllCalculations() {
   buildAddition();
   buildSubtraction();
@@ -72,20 +69,16 @@ function runAllCalculations() {
   buildDivision();
 }
 
-
-function runAllCalculations() {
-  const num = Number(document.getElementById("num").value);
-  buildAddition(num);
-  buildSubtraction(num);
-  buildMultiplication(num);
-  buildDivision(num);
-}
-document.getElementById("calcBtn").addEventListener("click", runAllCalculations);
+/* Dynamic event listener (no inline onclick) */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('calcBtn').addEventListener('click', runAllCalculations);
+});
 
 
 const count = window.matchMedia('(max-width: 600px)').matches ? 3 : 6;
 for (let i = 0; i < count; i++) { /* spawn */ }
   
+
 
 
 
