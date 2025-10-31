@@ -148,6 +148,10 @@ button:active {
     text-transform: lowercase;
     color: #1d0606;
     align-items: left;
+    white-space: nowrap;    
+  display: inline-block;  
+  overflow-x: auto;    
+  width: 100%; 
 }
 @media (min-width: 600px) {
     .controls {
@@ -245,4 +249,5 @@ button:active {
     opacity: 0.8;
     font-size: 0.95rem;
 }
+
 
