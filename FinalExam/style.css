@@ -1,3 +1,16 @@
+/*
+Khetiwe Miti 10/30/2025
+Final Exam — JavaScript Calculator
+
+What I implemented (Styling/Responsiveness):
+- Mobile-first styles with a soft animated gradient background for visual polish.
+- “Glass card” container (blur, transparency, shadow) to focus attention on the calculator.
+- Inline control row (label, input, button), but stacks vertically on phone screens.
+- Results layout is responsive: grid with auto-fit so nothing gets cut off.
+- Buttons have hover/active feedback; inputs are comfortable tap targets on mobile.
+- Added multiple media queries for phone), tablet, and desktop
+*/
+
 :root { --radius: 16px; }
 
 html, body {
@@ -259,6 +272,7 @@ button:active {
     min-width: auto;
   }
 }
+
 
 
 
