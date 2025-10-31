@@ -1,3 +1,18 @@
+/*
+Khetiwe Miti 10/30/2025
+Final Exam — JavaScript Calculator
+
+What I implemented (Behavior/Logic):
+- Four functions that each use required loop types + '+=' to build strings:
+  1) buildAddition(): for loop → num + 1..10
+  2) buildSubtraction(): while loop → num - 1..10
+  3) buildMultiplication(): do...while loop → num × 1..10
+  4) buildDivision(): for loop → num ÷ 1..10 with .toFixed(2)
+
+- Wrapper function runAllCalculations() calls all four and updates the correct <p> by id.
+- Dynamic event listener: document.getElementById('calcBtn').addEventListener('click', runAllCalculations);
+  (No inline onclick in HTML, keeping concerns separate.)
+  */
 
 'use strict'
 
@@ -71,6 +86,7 @@ document.getElementById("calcBtn").addEventListener("click", runAllCalculations)
 const count = window.matchMedia('(max-width: 600px)').matches ? 3 : 6;
 for (let i = 0; i < count; i++) { /* spawn */ }
   
+
 
 
 
