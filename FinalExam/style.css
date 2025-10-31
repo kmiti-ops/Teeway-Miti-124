@@ -1,4 +1,3 @@
-
 :root { --radius: 16px; }
 
 html, body {
@@ -17,6 +16,16 @@ flex-direction: column;
   animation: gradientShift 12s ease infinite;
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+} 
 
 .container {
   max-width: 300px;
@@ -32,11 +41,6 @@ flex-direction: column;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-} 
-
 .wrap { 
    max-width: 1000px; 
   margin-inline: auto; 
@@ -44,7 +48,7 @@ flex-direction: column;
 }
 
 .card {
-  position: relative, center;
+  position: relative;
    max-width: 900px;
     background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -66,18 +70,16 @@ position: relative, center;
 
 .site-header { 
   width: 100%; 
-  padding: 32px 18px; 
+  padding: 16px 0; 
   text-align: center;
   font-size: clamp(1.5rem, 2.4vw, 2rem);
 }
 
 .site-header h1 {
-  margin: 0 0 15px;
+  margin: 0 0 10px;
   color: #471704;
    font-weight: 700;
    font-size: 42px;   
-     margin: 0;
-  font-weight: 600;
   line-height: 1.15;
   display: inline-flex; 
   gap: .6rem; 
@@ -104,21 +106,21 @@ position: relative, center;
 
 
 input[type="number"] {
-  width: 120px;
-  padding: 4px 6px;
+  width: 140px;
+  padding: 6px 8px;
   border: 1px solid #666;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #fff;
 }
 
 button {
-  padding: 4px 10px;
+padding: 6px 12px;
   border: 1px solid #666;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #e6e6e6;          
-  font-family: inherit;
   font-size: 15px;
   cursor: pointer;
+  transition: transform .15s ease, box-shadow .25s ease, background .15s ease;
 }
 
 button:hover {
@@ -131,17 +133,16 @@ button:active {
   transform: scale(0.97);
 }
 
-
 .results {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive */
   gap: 16px;
-  flex-wrap: wrap; 
-  margin-top: 20px;
+  margin-top: 20px
 }
 
 .result-box { 
   flex: 1 1 2200px;
-  min-width: 800;
+  min-width: 0;
 }
 
 .result-box p {
@@ -154,19 +155,74 @@ button:active {
   align-items: left; 
 }
 
-@media (min-width: 600px) {
-  .controls { gap: 12px; }
-  .results { gap: 32px; }
+.site-footer {
+  position: relative;
+  z-index: 1;         
+  text-align: center;
+  margin: 24px 0 16px;
+  opacity: 0.8;
+  font-size: 0.95rem;
 }
 
-@media (min-width: 960px) {
-  .results { flex-wrap: nowrap; }
+@media (max-width: 600px) {
+   body { 
+    font-size: 14px; 
+    padding: 10px; 
+  
+  }
+  .container { 
+    width: 94%; 
+    padding: 20px; 
+  
+  }
+  .controls { flex-direction: column; 
+    align-items: stretch; 
+    gap: 10px; 
+  }
+  
+  input[type="number"], button { 
+    width: 100%; 
+  }
 }
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+@media (min-width: 601px) and (max-width: 960px) {
+  body { 
+    font-size: 16px; 
+    padding: 20px; 
+  }
+  .container { 
+    max-width: 820px; 
+  }
+   .card {
+    width: 80%;
+    padding: 30px;
+  }
+  .controls { 
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .results { 
+    gap: 32px; 
+  }
 }
+@media (min-width: 961px) {
+  .container { 
+    max-width: 1000px; 
+  }
+  .results { 
+    flex-wrap: nowrap; 
+    gap: 20px;
+    justify-content: center;
+  }
+  .card {
+    width: 60%;
+  }
+  .result-box {
+    flex: 1  1 45%;
+  }
+}
+
 
 @media (max-width: 600px) {
   body {
@@ -204,55 +260,6 @@ button:active {
   }
 }
 
-@media (min-width: 601px) and (max-width: 960px) {
-  body {
-    font-size: 16px;
-    padding: 20px;
-  }
-
-  .card {
-    width: 80%;
-    padding: 30px;
-  }
-
-  .controls {
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-  }
-
-  .results {
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .result-box {
-    flex: 1 1 45%; 
-  }
-}
-
-@media (min-width: 961px) {
-  .card {
-    width: 60%;
-  }
-
-  .results {
-    flex-wrap: nowrap;
-    gap: 30px;
-  }
-
-  .result-box {
-    flex: 1;
-  }
-}
 
 
-.site-footer {
-  position: relative;
-  z-index: 1;         
-  text-align: center;
-  margin: 24px 0 16px;
-  opacity: 0.8;
-  font-size: 0.95rem;
-}
+
